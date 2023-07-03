@@ -1,5 +1,5 @@
 # RecipeFinder
-A simple website to search any(hopefully) recipe you want!
+A simple website to search any (hopefully) recipe you want!
 
 ## About
 - Built with Vite (a frontend build tool), React and TailwindCSS.
@@ -23,5 +23,9 @@ A simple website to search any(hopefully) recipe you want!
     npm run dev
   ```
 - Click on the localhost link you get on terminal to open the project!
+
+# To-Do's before 5th July.
+
+- Add filter by categories and most importantly display the recipes (Properly!) lol.
 
 
