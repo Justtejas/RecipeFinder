@@ -2,6 +2,8 @@ import "tailwindcss/tailwind.css";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import Recipes from "./components/Recipes";
+import Recipe from "./components/recipe";
+import { Route, BrowserRouter as Router, Routes} from "react-router-dom";
 const APP_URL = import.meta.env.VITE_APP_URL;
 
 function App() {
@@ -12,16 +14,24 @@ function App() {
     const response = await fetch(`${APP_URL}/search.php?s=${search}`);
     const data = await response.json();
     setRecipes(data.meals);
+    console.log(data.meals);
   };
   useEffect(() => {
     getRecipes(search);
   }, []);
   return (
     <>
-      <h1 className="text-center my-20 text-7xl text-white font-sans font-extrabold w-full">
+      <h1 className="text-center my-8 text-7xl text-white font-sans font-extrabold">
         Recipe Finder
       </h1>
-      <div className="flex justify-center sm:mx-96 mt-16  mb-24 py-6 px-7 border rounded-full bg-zinc-600 ">
+      <nav>
+        <ul className="flex justify-end font-bold text-4xl text-white -mt-24 pt-4 pr-20 hover:text-gray-300 hover:underline">
+          <li>
+            <a href="/">Home</a>
+          </li>
+        </ul>
+      </nav>
+      <div className="flex justify-center sm:mx-96 mt-16  mb-10 py-6 px-7 border rounded-full bg-zinc-600 ">
         <input
           type="text"
           placeholder="Search for recipes..."
@@ -45,11 +55,22 @@ function App() {
         </button>
       </div>
       {recipes?.length > 0 ? (
-        <div className="container w-screen mt-10 flex justify-center align-middle flex-wrap">
-          {recipes.map((recipe) => (
-            <Recipes recipes={recipe} />
-          ))}
-        </div>
+        <Router>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <div className="container w-screen mt-10 flex justify-center align-middle flex-wrap">
+                  {recipes.map((recipe) => (
+                    <Recipes key={recipe.id} recipes={recipe} />
+                  ))}
+                </div>
+              }
+            ></Route>
+            , (<Route path="/:id" element={<Recipe />}></Route>)
+          </Routes>
+        </Router>
       ) : (
         <div className="flex justify-center sm:mx-96 mt-16 mb-8 py-6 px-7 rounded-md bg-zinc-600">
           <h1 className="text-2xl font-bold text-white">
