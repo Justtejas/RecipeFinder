@@ -21,20 +21,22 @@ const Recipe = () => {
           {recipe.strMeal}
         </h1>
       </div>
-      <div className="mt-4 flex flex-wrap flex-row gap-96">
+      <div className="mt-4 flex flex-wrap flex-row md:gap-96">
         <img
           src={recipe.strMealThumb}
           alt={recipe.strMeal}
           style={{ width: "300px", height: "300px" }}
-          className=" rounded-xl ml-96 shadow-lg mt-6"
+          className=" rounded-xl md:ml-96 shadow-lg md:mt-6 ml-20"
         />
-        <div className="mx-24">
-          <h2 className="text-5xl text-white font-bold my-4">Ingredients</h2>
+        <div className="md:mx-24  ml-20 mt-8">
+          <h2 className="md:text-5xl text-2xl text-white font-bold md:my-4">
+            Ingredients
+          </h2>
           <ul className="text-white font-medium text-2xl list-disc ml-9">
             {Object.keys(recipe).map((key) => {
               if (key.includes("Ingredient") && recipe[key]) {
                 return (
-                  <li key={key} className=" my-7">
+                  <li key={key} className="my-7">
                     {recipe[key]} - {recipe[`strMeasure${key.slice(13)}`]}
                   </li>
                 );
@@ -44,9 +46,11 @@ const Recipe = () => {
           </ul>
         </div>
       </div>
-      <div className="flex flex-wrap justify-center align-middle mb-14 pb-14">
-        <h2 className="text-5xl text-white font-bold my-4">Instructions</h2>
-        <p className="text-white font-medium text-2xl ml-96 mr-64 break-words whitespace-pre-line">
+      <div className="flex flex-wrap justify-center align-middle md:mb-14 md:pb-14">
+        <h2 className="md:text-5xl text-2xl text-white font-bold my-4">
+          Instructions
+        </h2>
+        <p className="text-white font-medium text-2xl md:ml-96 ml-20 md:mr-64 mr-28 break-words whitespace-pre-line">
           {recipe.strInstructions}
         </p>
       </div>
