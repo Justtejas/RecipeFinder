@@ -9,9 +9,7 @@ const Home = () => {
       .then((response) => response.json())
       .then((data) => {
         setRecipes(data.meals);
-        console.log(data.meals);
       });
-    console.log(recipes);
   };
 
   useEffect(() => {
