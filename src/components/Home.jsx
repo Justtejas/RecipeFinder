@@ -4,6 +4,7 @@ const APP_URL = import.meta.env.VITE_APP_URL;
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
+
   const getRecipes = async (search) => {
     await fetch(`${APP_URL}/search.php?s=${search}`)
       .then((response) => response.json())
@@ -15,6 +16,7 @@ const Home = () => {
   useEffect(() => {
     getRecipes(search);
   }, []);
+  let num = 0;
   return (
     <>
       <div className="flex justify-center sm:mx-96 mt-16  mb-10 py-6 px-7 border rounded-full bg-zinc-600 ">
@@ -40,11 +42,19 @@ const Home = () => {
           Search
         </button>
       </div>
-      <div className="container w-screen mt-10 flex justify-center align-middle flex-wrap">
-        {recipes.map((recipe) => (
-          <Recipes key={recipe.id} recipes={recipe} />
-        ))}
-      </div>
+      {recipes ? (
+        <div className="container w-screen mt-10 flex justify-center align-middle flex-wrap">
+          {recipes.map((recipe) => (
+            <Recipes key={num++} recipes={recipe} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex justify-center align-middle">
+          <h1 className="text-center mb-4 text-6xl text-white font-extrabold w-full hover:text-slate-300 hover:underline">
+            No recipes found
+          </h1>
+        </div>
+      )}
     </>
   );
 };
