@@ -30,7 +30,3 @@ A simple website to search any (hopefully) recipe you want!
     npm run dev
   ```
 - Click on the localhost link you get on terminal to open the project!
-
-# To do's
-
-- Add Filter by Category
