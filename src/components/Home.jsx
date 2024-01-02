@@ -25,7 +25,7 @@ const Home = () => {
  let num = 0;
   return (
     <>
-      <div className="flex justify-center mt-16 mb-10 lg:w-5/6 py-6 px-7 border rounded-full bg-zinc-600 md:mx-auto lg:ml-52">
+      <div className="flex justify-center mt-16 mb-10 sm:w-5/6 py-6 px-7 border rounded-full bg-zinc-600 md:mx-auto xl:ml-52 xl:mx-auto">
         <input
           type="text"
           placeholder="Search for recipes..."
@@ -49,7 +49,7 @@ const Home = () => {
         </button>
       </div>
       {recipes ? (
-        <div className="container w-screen lg:ml-80">
+        <div className="container w-screen mx-auto">
           <div className=" mt-10  flex justify-center align-middle flex-wrap">
             {recipes.map((recipe) => (
               <Recipes key={num++} recipes={recipe} />
@@ -66,5 +66,4 @@ const Home = () => {
     </>
   );
 };
-
 export default Home;
